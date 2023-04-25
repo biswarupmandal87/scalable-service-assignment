@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "b9c5a6be-6797-4b61-8348-37c7adfb1dab",
+		"name": "Scalable Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5769031"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Biswarup\",\r\n    \"last_name\":\"Mandal\",\r\n    \"email\":\"biswarup.softronet@gmail.com\",\r\n    \"password\":\"biswa@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/register",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"Authorization\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"biswarup.softronet@gmail.com\",\r\n    \"password\":\"Biswa@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/login",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"biswarup.softronet@gmail.com\",\r\n    \"new_password\":\"Biswa@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/reset-password",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old_password\":\"Biswa@1234\",\r\n    \"new_password\":\"biswa#1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/change-password",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Biswarup 1\",\r\n    \"last_name\":\"Mandal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/profile",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "whoami",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/whoami",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"whoami"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_baseurl}}/api-v1/user/logout",
+							"host": [
+								"{{user_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"AdminAuthorization\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"biswarup.admin@gmail.com\",\r\n    \"password\": \"admin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/login",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Admin\",\r\n    \"last_name\": \"Management\",\r\n    \"email\": \"biswarup.admin@gmail.com\",\r\n    \"password\": \"admin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/register",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Whoami",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/whoami",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"whoami"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/logout",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_password\":\"admin@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/change-password",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/users",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/users/EO9aaMtFH3aF1Lbg",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"users",
+								"EO9aaMtFH3aF1Lbg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AdminAuthorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{admin_service_baseurl}}/api-v1/admin/users/EO9aaMtFH3aF1Lbg",
+							"host": [
+								"{{admin_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"admin",
+								"users",
+								"EO9aaMtFH3aF1Lbg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "add project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"asgasg\",\r\n    \"description\":\"fasf\",\r\n    \"is_enabled\":true,\r\n    \"start_date\":\"2023-05-01\",\r\n    \"end_date\":\"2023-06-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{project_service_baseurl}}/api-v1/projects",
+							"host": [
+								"{{project_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{project_service_baseurl}}/api-v1/projects",
+							"host": [
+								"{{project_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{project_service_baseurl}}/api-v1/projects/QAquIwlNiK8hr5OQ",
+							"host": [
+								"{{project_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"projects",
+								"QAquIwlNiK8hr5OQ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{project_service_baseurl}}/api-v1/projects/vrvysGVMIVpF484w",
+							"host": [
+								"{{project_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"projects",
+								"vrvysGVMIVpF484w"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Authorization}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"asgasg\",\r\n    \"description\":\"fasf\",\r\n    \"is_enabled\":true,\r\n    \"start_date\":\"2023-05-01\",\r\n    \"end_date\":\"2023-06-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{project_service_baseurl}}/api-v1/projects/QAquIwlNiK8hr5OQ",
+							"host": [
+								"{{project_service_baseurl}}"
+							],
+							"path": [
+								"api-v1",
+								"projects",
+								"QAquIwlNiK8hr5OQ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Authorization",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "AdminAuthorization",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_service_baseurl",
+			"value": "localhost:6000",
+			"type": "string"
+		},
+		{
+			"key": "admin_service_baseurl",
+			"value": "localhost:6001",
+			"type": "string"
+		},
+		{
+			"key": "project_service_baseurl",
+			"value": "localhost:6002",
+			"type": "string"
+		}
+	]
+}
