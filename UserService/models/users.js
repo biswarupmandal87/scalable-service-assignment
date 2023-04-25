@@ -32,9 +32,6 @@ var userSchema = new Schema({
   password: {
     type: String,
   },
-  birth_day: {
-    type: String
-  },
   profile_picture: Object,
   since: {
     type: Date,

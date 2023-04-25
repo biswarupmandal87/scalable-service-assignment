@@ -93,11 +93,6 @@ var userController = {
                             callback(err, null);
                         } else if (!user) {
                             callback({ message: "Email ID is not registered" }, null);
-                        } else if (user && !user.user_activated) {
-                            callback(
-                                { message: "User is not activated.", showActivationLink: true },
-                                null
-                            );
                         } else if (
                             user.user_locked_until &&
                             user.user_locked_until.length > 0
@@ -240,27 +235,21 @@ var userController = {
                     }
                 },
                 (callback) => {
-                    const { email, code } = req.body;
+                    const { email } = req.body;
                     User.findOne({ email: email }, (err, user) => {
                         if (err) {
                             callback(err);
                         } else if (!user) {
                             callback({ message: "User Not found!" });
-                        } else if (code != user.password_reset_code) {
-                            callback({ message: "Password reset code does not match" });
-                        } else if (new Date() > user.password_reset_code_expire_at) {
-                            callback({ message: "Password reset code is expired!" });
                         } else {
                             callback(null, user);
                         }
                     });
                 },
                 (user, callback) => {
-                    const { password } = req.body;
+                    const { new_password } = req.body;
                     let updateData = {
-                        password_reset_code: null,
-                        password_reset_code_expire_at: null,
-                        password: bcrypt.hashSync(password, 10),
+                        password: bcrypt.hashSync(new_password, 10),
                     };
                     User.updateOne(
                         { email: user.email },
