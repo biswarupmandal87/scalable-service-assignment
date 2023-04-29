@@ -7,6 +7,9 @@
 
 # dependencies
 /node_modules
+/admiservice/node_modules
+/projectservice/node_modules
+/userservice/node_modules
 /public/uploads
 
 # IDEs and editors
